@@ -20,8 +20,8 @@
       (let [advalue (r/atom (#(get-address-value address)))]
            [:tr
             [:td address]
-            [:td [:button.btn {:on-click #(reset! advalue (rand-str 4))}  "Recalculate value"]]
-            [:td @advalue]]))
+            [:td @advalue]
+            [:td [:button.btn {:on-click #(reset! advalue (rand-str 4))}  "Recalculate value"]]]))
 
 
 
@@ -37,13 +37,13 @@
        (if (empty? @state/addressFound)
          [:div.title "nothing found"]
          [:div.padtop
-          [:div.h1 "Addresses:"]
-          [:table.table
+          [:div.h2 "Addresses:"]
+          [:table.table {:style {:margin-top 40}}
            [:thead
             [:tr
              [:th.title "Address:"]
-             [:th.title "Actions"]
-             [:th.title "Value:"]]]
+             [:th.title "Value:"]
+             [:th.title "Actions:"]]]
            [:tbody
             (for [x @state/addressFound]
                  (info x))]]])])
