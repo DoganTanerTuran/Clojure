@@ -3,6 +3,7 @@
             [giggin.state :as state]
             [giggin.utils.helpers :refer [find-address]]
             [giggin.utils.helpers :refer [get-address-value]]
+            [giggin.utils.helpers :refer [change-address-value]]
             [giggin.utils.helpers :refer [print-test]]
             [giggin.utils.helpers :refer [rand-str]]))
 
@@ -17,11 +18,11 @@
 
 
 (defn info[address]
-      (let [advalue (r/atom (#(get-address-value address)))]
-           [:tr
-            [:td address]
-            [:td @advalue]
-            [:td [:button.btn {:on-click #(reset! advalue (rand-str 4))}  "Recalculate value"]]]))
+      (let [ advalue (r/atom (get-address-value address))]
+        [:tr {:key (rand-str 4)}
+         [:td  address]
+         [:td  @advalue]
+         [:td [:button.btn {:style {:margin-left 40} :on-click #(reset! advalue "Changed!")} "Recalculate"]]]))
 
 
 
