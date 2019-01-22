@@ -4,5 +4,5 @@
              [myrest.forside :as forside]))
 
 (defroutes my_routes
-           (GET "/ejendomme" [] (forside/index-ejendomme))
+           (GET "/ejendomme/:address" [address] (forside/value-address address))
            (route/resources "/"))

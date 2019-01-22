@@ -1,11 +1,19 @@
 (ns myrest.forside
-  (:require [clj-http.client :as http])
-  (:use hiccup.page hiccup.element))
+    (:require [clj-http.client :as http])
+    (:use hiccup.page hiccup.element)
+    (:require [cheshire.core :as cheshire])
+    (:require [clojure.data.json :as json]))
+
+(def api (:body (http/get "https://my-json-server.typicode.com/nielsjes/vismaRatings/db")))
 
 
-(defn index-ejendomme []
-  (html5
-    [:html]
-    [:head]
-    [:body (:body (http/get "https://dawa.aws.dk/adresser?vejnavn=R%C3%B8dkildevej&husnr=46&struktur=mini"))]
-    ))
+(defn value-address [address]
+      (def result (filter #(.contains (:street %) address)  (:addresses (cheshire/parse-string api true))))
+      (def parsedResult (cheshire/generate-string result))
+
+      (html5
+        [:html]
+        [:head {"mlæømsdæfl:true"}]
+        [:body parsedResult]))
+
+
