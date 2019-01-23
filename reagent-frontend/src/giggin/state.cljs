@@ -3,7 +3,7 @@
 
 (def address (r/atom {:value nil}))
 
-(def addressFound (r/atom {}))
+(def addressFound (r/atom []))
 
 (def forcer (r/atom 0))
 
