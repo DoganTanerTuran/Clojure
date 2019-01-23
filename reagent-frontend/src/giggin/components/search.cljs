@@ -3,7 +3,6 @@
             [giggin.state :as state]
             [giggin.utils.helpers :refer [find-address]]
             [giggin.utils.helpers :refer [get-address-value]]
-            [giggin.utils.helpers :refer [change-address-value]]
             [giggin.utils.helpers :refer [print-test]]
             [giggin.utils.helpers :refer [rand-str]]))
 

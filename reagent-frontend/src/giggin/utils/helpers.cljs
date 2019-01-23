@@ -10,7 +10,7 @@
 (defn find-address
       [address]
       (go (let [response (<! (http/get "https://my-json-server.typicode.com/nielsjes/vismaRatings/db"))]
-               (swap! state/addressFound :addresses (:addresses (:body response))))))
+               (swap! state/addressFound :addresses (map :street (:addresses (:body response))))))
 
 
 (defn rand-str [len]
@@ -18,8 +18,8 @@
 
 (defn get-address-value
       [address]
-      (rand-str 4))
+      (str (+ (rand-int 1100000) 1000000) " kr."))
 
 (defn print-test
       []
-      (println "testtest"))
+      (println "testtest")))
